@@ -69,11 +69,11 @@ with st.sidebar:
 
     st.divider()
 
-    if st.button("🗑️ Nouvelle session"):
+    if st.button("Nouvelle session"):
         st.session_state.messages = []
         st.rerun()
 
-    st.caption("⚠️ Ne remplace pas un avis médical")
+    st.caption(" ⚠️ Ne remplace pas un avis médical")
 
 # ── Header ──────────────────────────────────
 st.title("⚕️ Assistant Médicaments")

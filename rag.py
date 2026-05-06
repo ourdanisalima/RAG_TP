@@ -10,7 +10,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 load_dotenv()
 
 if not os.getenv("GROQ_API_KEY"):
-    print("❌ GROQ_API_KEY manquante dans le fichier .env")
+    print(" GROQ_API_KEY manquante dans le fichier .env")
     sys.exit(1)
 
 from src.embedder import charger_modele, charger_index
@@ -28,7 +28,7 @@ def print_bar():
 
 # ─────────────────────────────────────────────
 def afficher_sources(chunks):
-    print("\n📚 SOURCES UTILISÉES\n")
+    print("\n SOURCES UTILISÉES\n")
 
     for i, c in enumerate(chunks, 1):
         nom = c["metadata"].get("denomination", "Inconnu")
@@ -55,7 +55,7 @@ def main(avec_reformulation=True):
         modele = charger_modele()
         index, chunks = charger_index()
     except FileNotFoundError as e:
-        print(f"❌ Erreur : {e}")
+        print(f" Erreur : {e}")
         sys.exit(1)
 
     retriever = RetrieverAgent(modele, index, chunks, avec_reformulation)
@@ -74,16 +74,16 @@ def main(avec_reformulation=True):
     while True:
 
         try:
-            question = input("\n❓ Question : ").strip()
+            question = input("\n Question : ").strip()
         except (KeyboardInterrupt, EOFError):
-            print("\n👋 Bye")
+            print("\n Bye")
             break
 
         if not question:
             continue
 
         if question.lower() in ["quit", "exit", "q"]:
-            print("\n👋 Bye")
+            print("\n Bye")
             break
 
         if question.lower() == "sources":
@@ -99,17 +99,17 @@ def main(avec_reformulation=True):
         if res["reformulee"]:
             print(f"↪ reformulation : {res['question_recherche']}")
 
-        print(f"📊 score max : {res['meilleur_score']:.1%}")
+        print(f"score max : {res['meilleur_score']:.1%}")
 
         if not res["confiance_ok"]:
-            print("\n⚠️ Aucune information fiable trouvée.")
+            print("\n Aucune information fiable trouvée.")
             print("Consultez un professionnel de santé.")
             continue
 
         chunks = res["resultats"]
         last_chunks = chunks
 
-        print(f"📄 {len(chunks)} chunks récupérés")
+        print(f"{len(chunks)} chunks récupérés")
 
         # ── Generator ───────────────────────
         log("R2", "Génération de la réponse...")

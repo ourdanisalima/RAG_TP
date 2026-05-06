@@ -9,3 +9,6 @@ links = re.findall(r'href="([^"]+)"', r.text)
 for l in links:
     if 'bdpm' in l.lower() or 'CIS' in l or 'fichier' in l:
         print(l)
+
+print(f"\nTotal liens trouvés: {len(links)}")
+

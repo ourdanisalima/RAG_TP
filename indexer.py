@@ -49,7 +49,7 @@ def main():
         # ─────────────────────────────
         total = time.time() - start
         print("\n" + "=" * 60)
-        print(f"   ✅ Indexation terminée en {total:.1f}s")
+        print(f"   Indexation terminée en {total:.1f}s")
         print("=" * 60)
 
     except Exception as e:
