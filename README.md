@@ -155,9 +155,9 @@ BeautifulSoup4>=4.12.0
 
 ---
 
-## 📝 Réponses aux questions de réflexion préliminaires (Sujet B)
+## Réponses aux questions de réflexion préliminaires (Sujet B)
 
-### Q1 — Stratégie de chunking pour des notices longues et denses
+### R1 — Stratégie de chunking pour des notices longues et denses
 
 Les notices médicaments sont des documents très longs (parfois 10 à 20 pages) avec une densité informationnelle élevée. Une taille de chunk de **800 à 1000 caractères** a été retenue, avec un **overlap de 100 caractères**.
 
@@ -167,7 +167,7 @@ Ce choix résulte d'un compromis :
 
 L'overlap de 100 caractères permet de ne pas couper une information à cheval sur deux chunks et d'assurer une continuité sémantique entre morceaux adjacents.
 
-### Q2 — Exploitation de la structure des notices
+### R2 — Exploitation de la structure des notices
 
 Les notices médicaments sont structurées en sections bien identifiables : *Indications thérapeutiques*, *Posologie*, *Contre-indications*, *Effets indésirables*, *Interactions médicamenteuses*, etc.
 
@@ -175,7 +175,7 @@ Plutôt qu'un chunking purement mécanique basé sur le nombre de caractères, o
 
 Avantages : chaque chunk est thématiquement cohérent, ce qui améliore la précision de la recherche vectorielle.
 
-### Q3 — Distinguer les types de chunks grâce aux métadonnées
+### R3 — Distinguer les types de chunks grâce aux métadonnées
 
 Chaque chunk stocke dans ses métadonnées le champ `type_chunk`, qui indique la section dont il est issu : `posologie`, `effets_indesirables`, `contre_indications`, `interactions`, etc. Ainsi, lors de la recherche FAISS, on peut :
 
@@ -183,7 +183,7 @@ Chaque chunk stocke dans ses métadonnées le champ `type_chunk`, qui indique la
 - **Afficher** le type dans l'interface pour que l'utilisateur sache d'où vient l'information.
 - **Guider le LLM** en incluant le type dans le contexte fourni, permettant une réponse plus précise et mieux sourcée.
 
-### Q4 — Gérer les questions impliquant plusieurs médicaments
+### R4 — Gérer les questions impliquant plusieurs médicaments
 
 Une question comme *"Puis-je prendre du Doliprane et de l'ibuprofène en même temps ?"* nécessite des chunks des deux médicaments. Plusieurs stratégies ont été envisagées :
 
@@ -193,7 +193,7 @@ Une question comme *"Puis-je prendre du Doliprane et de l'ibuprofène en même t
 
 L'approche retenue combine la reformulation (Bonus C) et un k suffisamment large pour couvrir plusieurs médicaments.
 
-### Q5 — Formuler un prompt à la fois informatif et prudent
+### R5 — Formuler un prompt à la fois informatif et prudent
 
 Le prompt système définit le LLM comme un **assistant d'information pharmaceutique**, non comme un médecin. Il intègre les contraintes suivantes :
 
